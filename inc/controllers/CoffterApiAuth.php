@@ -20,6 +20,12 @@ class CoffterApiAuth {
 	 *                          		since it's really only a free parameter
 	 */
   public function key_request( $email ) {
+		if( getenv( 'ALLOW_AUTH_REQUEST' ) === 'false' ) {
+			Flight::json( array(
+				'error' => 'API authorization key requests not allowed'
+			), 403 );
+		}
+
     if( !filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
 			Flight::json( array(
 				'error' => 'invalid email address'
