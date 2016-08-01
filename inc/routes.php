@@ -42,7 +42,7 @@ Flight::route( '/v1/key_request/@email', array( 'CoffterApiAuth', 'key_request' 
  *
  *  @since	1.0.0
  */
-Flight::route( '/v1/coffee/consume/@bttnid/@eventid/@type/@time/@key', array( 'CoffterEntries', 'register' ) );
+Flight::route( '/v1/coffee/consume/@key', array( 'CoffterEntries', 'register' ) );
 
 /**
  *  All coffee consumption statistics

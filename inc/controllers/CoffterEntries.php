@@ -22,15 +22,15 @@ class CoffterEntries {
 	 *  @param   string    $time    Press time
 	 *  @param   string    $key     Authorization key
 	 */
-  public static function register( $bttnid, $eventid, $type, $time, $key ) {
+  public static function register( $key ) {
 		$auth_id = CoffterApiAuth::key_check( $key );
 
 		$insert = CoffterDatabase::insert_entry( array(
-			'e_id'		=> $eventid,
-			'bttn_id'	=> $bttnid,
+			'e_id'		=> $_SERVER['HTTP_EVENTID'],
+			'bttn_id'	=> $_SERVER['HTTP_BTTNID'],
 			'auth_id'	=> $auth_id,
-			'time'		=> date( 'Y-m-d H:i:s', $time ),
-			'type'		=> $type
+			'time'		=> date( 'Y-m-d H:i:s', $_SERVER['HTTP_TIME'] ),
+			'type'		=> $_SERVER['HTTP_TYPE']
 		) );
 
 		if( !$insert ) {
