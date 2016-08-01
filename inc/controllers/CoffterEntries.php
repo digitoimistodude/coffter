@@ -26,11 +26,11 @@ class CoffterEntries {
 		$auth_id = CoffterApiAuth::key_check( $key );
 
 		$insert = CoffterDatabase::insert_entry( array(
-			'e_id'		=> $_SERVER['HTTP_EVENTID'],
-			'bttn_id'	=> $_SERVER['HTTP_BTTNID'],
+			'e_id'		=> $_GET['eventid'],
+			'bttn_id'	=> $_GET['bttnid'],
 			'auth_id'	=> $auth_id,
-			'time'		=> date( 'Y-m-d H:i:s', $_SERVER['HTTP_TIME'] ),
-			'type'		=> $_SERVER['HTTP_TYPE']
+			'time'		=> date( 'Y-m-d H:i:s', $_GET['time'] ),
+			'type'		=> $_GET['type']
 		) );
 
 		if( !$insert ) {
