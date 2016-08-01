@@ -38,6 +38,13 @@ Flight::route( '/v1', array( 'CoffterDefault', 'index' ) );
 Flight::route( '/v1/key_request/@email', array( 'CoffterApiAuth', 'key_request' ) );
 
 /**
+ *  All coffee consumption statistics
+ *
+ *  @since	1.0.0
+ */
+Flight::route( '/v1/coffee', array( 'CoffterStats', 'all' ) );
+
+/**
  *  Coffee consume entry saving
  *
  *  @since	1.0.0
@@ -45,15 +52,15 @@ Flight::route( '/v1/key_request/@email', array( 'CoffterApiAuth', 'key_request' 
 Flight::route( '/v1/coffee/consume/@key', array( 'CoffterEntries', 'register' ) );
 
 /**
- *  All coffee consumption statistics
- *
- *  @since	1.0.0
- */
-Flight::route( '/v1/coffee/drunk', array( 'CoffterStats', 'all' ) );
-
-/**
  *  Spesific period coffee consumption statistics
  *
  *  @since	1.0.0
  */
 Flight::route( '/v1/coffee/drunk/@period', array( 'CoffterStats', 'period' ) );
+
+/**
+ *  How much coffee is left
+ *
+ *  @since	1.0.0
+ */
+Flight::route( '/v1/coffee/left', array( 'CoffterStats', 'left' ) );

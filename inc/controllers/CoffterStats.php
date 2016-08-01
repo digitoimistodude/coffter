@@ -2,7 +2,7 @@
 
 /**
  *	Statistics controller for API
- * 
+ *
  * @package Coffter
  * @since 1.0.0
  */
@@ -136,6 +136,31 @@ class CoffterStats {
 	} // end period
 
 	/**
+	 *  Return how many coffee cups are left after last fill.
+	 *  
+	 *  @since   1.0.0
+	 *  @version 1.0.0
+	 *  @param   boolean   $return Should we return count or send json
+	 *  @return  int            	 If we should return count, that we will do
+	 */
+	public function left( $return = false ) {
+		$last_fill = CoffterDatabase::get_latest_entry( 'pressed-long' );
+		$count = CoffterDatabase::count_entries( $last_fill['event_time'], date( 'Y-m-d H:i:s' ) );
+
+		$count = getenv( 'CUPS_FROM_FILL' ) - $count;
+
+		if( $return )
+			return $count;
+
+		Flight::json( array(
+			'success' => 'Coffee stats generated',
+			'details'	=> array(
+				'count'		=> $count,
+			)
+		) );
+	} // end left
+
+	/**
 	 *  Return all consumption statistics together.
 	 *
 	 *  @since   1.0.0
@@ -148,7 +173,8 @@ class CoffterStats {
 				'day'		=> self::day( true ),
 				'week'	=> self::week( true ),
 				'month'	=> self::month( true ),
-				'year'	=> self::year( true )
+				'year'	=> self::year( true ),
+				'left'	=> self::left( true )
 			)
 		) );
 	} // end all

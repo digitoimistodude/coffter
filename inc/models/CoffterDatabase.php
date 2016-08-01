@@ -104,16 +104,33 @@ class CoffterDatabase {
 		return false;
 	} // end insert_entry
 
-	public function count_entries( $start_time = null, $end_time = null ) {
+	public function count_entries( $start_time = null, $end_time = null, $event_type = 'pressed' ) {
 		if( is_null( $start_time ) || is_null( $end_time ) )
 			return false;
 
 		self::initialize();
 
 		$count = self::$database->count( 'entries', [
-			'event_time[<>]' => [ $start_time, $end_time ]
+			'AND' => [
+				'event_type'			=> $event_type,
+				'event_time[<>]'	=> [ $start_time, $end_time ]
+			]
 		] );
 
 		return $count;
 	} // end count_entries
+
+	public function get_latest_entry( $event_type = null ) {
+		if( is_null( $event_type ) )
+			return false;
+
+		self::initialize();
+
+		return self::$database->get( 'entries', '*', [
+			'event_type'	=> $event_type,
+			'ORDER'				=> [
+				'id'	=> 'DESC'
+			]
+		] );
+	} // end get_latest_entry
 } // end CoffterDatabase
