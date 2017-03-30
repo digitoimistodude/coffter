@@ -120,17 +120,19 @@ class CoffterDatabase {
 		return $count;
 	} // end count_entries
 
-	public function get_latest_entry( $event_type = null ) {
+	public function get_latest_entry( $start_time = null, $end_time = null, $event_type = 'pressed' ) {
 		if( is_null( $event_type ) )
 			return false;
 
 		self::initialize();
 
-		return self::$database->get( 'entries', '*', [
-			'event_type'	=> $event_type,
-			'ORDER'				=> [
-				'id'	=> 'DESC'
+    $entries = self::$database->select( 'entries', '*', [
+			'AND' => [
+				'event_type'			=> $event_type,
+				'event_time[<>]'	=> [ $start_time, $end_time ]
 			]
 		] );
+
+    return end( $entries )['event_time'];
 	} // end get_latest_entry
 } // end CoffterDatabase

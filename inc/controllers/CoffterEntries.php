@@ -25,11 +25,14 @@ class CoffterEntries {
   public static function register( $key ) {
 		$auth_id = CoffterApiAuth::key_check( $key );
 
+    $date = new DateTime( '@'.$_GET['time'] );
+    $date->setTimezone( new DateTimeZone( 'Europe/Helsinki' ) );
+
 		$insert = CoffterDatabase::insert_entry( array(
 			'e_id'		=> $_GET['eventid'],
 			'bttn_id'	=> $_GET['bttnid'],
 			'auth_id'	=> $auth_id,
-			'time'		=> date( 'Y-m-d H:i:s', $_GET['time'] ),
+			'time'		=> $date->format( 'Y-m-d H:i:s' ),
 			'type'		=> $_GET['type']
 		) );
 
