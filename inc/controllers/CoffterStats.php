@@ -270,31 +270,31 @@ class CoffterStats {
 	 */
 	public function period( $period, $return = false ) {
 		if( $period === 'day' ) {
-			$return = self::day( $return );
+			$data = self::day( $return );
 
       if( $return )
-        return $return;
+        return $data;
     }
 
 		if( $period === 'week' ) {
-			$return = self::week( $return );
+			$data = self::week( $return );
 
       if( $return )
-        return $return;
+        return $data;
     }
 
 		if( $period === 'month' ) {
-			$return = self::month( $return );
+			$data = self::month( $return );
 
       if( $return )
-        return $return;
+        return $data;
     }
 
 		if( $period === 'year' ) {
-			$return = self::year( $return );
+			$data = self::year( $return );
 
       if( $return )
-        return $return;
+        return $data;
     }
 
     if( !$return ) {
@@ -313,24 +313,24 @@ class CoffterStats {
 	 */
 	public function chart( $period, $return = false ) {
 		if( $period === 'week' ) {
-			$return = self::week_hour_by_hour( $return );
+			$data = self::week_hour_by_hour( $return );
 
       if( $return )
-        return $return;
+        return $data;
     }
 
 		if( $period === 'month' ) {
-			$return = self::month_day_by_day( $return );
+			$data = self::month_day_by_day( $return );
 
       if( $return )
-        return $return;
+        return $data;
     }
 
 		if( $period === 'halfyear' ) {
-			$return = self::halfyear_week_by_week( $return );
+			$data = self::halfyear_week_by_week( $return );
 
       if( $return )
-        return $return;
+        return $data;
     }
 
     if( !$return ) {
