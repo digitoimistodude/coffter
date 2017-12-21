@@ -92,7 +92,7 @@ class CoffterDatabase {
 
 		self::initialize();
 
-		$return = self::$database->insert( 'entries', [
+		self::$database->insert( 'entries', [
 			'event_id'		=> $event['e_id'],
 			'bttn_id'			=> $event['bttn_id'],
 			'auth_id'			=> $event['auth_id'],
@@ -100,6 +100,8 @@ class CoffterDatabase {
 			'event_time'	=> $event['time'],
 			'created_at'	=> date( 'Y-m-d H:i:s' )
 		] );
+
+		$return = self::$database->id();
 
 		if( is_numeric( $return ) )
 			return true;

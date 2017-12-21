@@ -36,14 +36,16 @@ class CoffterEntries {
 			'type'		=> $_GET['type']
 		) );
 
-		if( !$insert ) {
+		if( ! $insert ) {
 			Flight::json( array(
 				'error' => 'error while saving entry'
 			), 400 );
+			exit;
+		} else {
+			Flight::json( array(
+				'success' => 'entry saved'
+			) );
+			exit;
 		}
-
-		Flight::json( array(
-			'success' => 'entry saved'
-		) );
   } // end register
 } // end CoffterEntries
