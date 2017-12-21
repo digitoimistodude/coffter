@@ -7,7 +7,7 @@
  * @since 1.0.0
  */
 
-require 'inc/models/CoffterDatabase.php';
+require_once 'inc/models/CoffterDatabase.php';
 
 class CoffterApiAuth {
 

@@ -52,13 +52,6 @@ Flight::route( '/v1/coffee', array( 'CoffterStats', 'all' ) );
 Flight::route( '/v1/coffee/consume/@key', array( 'CoffterEntries', 'register' ) );
 
 /**
- *  Spesific period coffee consumption statistics for charts
- *
- *  @since	1.0.0
- */
-Flight::route( '/v1/coffee/chart/@period', array( 'CoffterStats', 'chart' ) );
-
-/**
  *  Spesific period coffee consumption statistics
  *
  *  @since	1.0.0
