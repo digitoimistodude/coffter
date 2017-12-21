@@ -9,6 +9,9 @@
  * @since 1.0.0
  */
 
+// Using Medoo namespace
+use Medoo\Medoo;
+
 class CoffterDatabase {
 	private static $initialized = false;
 	private static $database = '';
@@ -24,7 +27,7 @@ class CoffterDatabase {
 		if( self::$initialized )
     	return;
 
-		self::$database = new medoo([
+		self::$database = new Medoo([
 	    'database_type'	=> 'mysql',
 	    'database_name'	=> getenv( 'DB_NAME' ),
 	    'server'				=> getenv( 'DB_HOST' ),
