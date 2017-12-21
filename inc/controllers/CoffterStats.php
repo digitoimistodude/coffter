@@ -149,7 +149,7 @@ class CoffterStats {
 	 *  @version 1.0.0
 	 *  @param   boolean   $period What period to count
 	 */
-	public function period( $period ) {
+	public function period( $period = null ) {
 		if( $period === 'day' )
 			self::day();
 
@@ -162,9 +162,11 @@ class CoffterStats {
 		if( $period === 'year' )
 			self::year();
 
-		Flight::json( array(
-			'error' => 'stats period not spesified'
-		), 400 );
+		if( ! isset( $period ) ) {
+			Flight::json( array(
+				'error' => 'stats period not spesified'
+			), 400 );
+		}
 	} // end period
 
 	/**
